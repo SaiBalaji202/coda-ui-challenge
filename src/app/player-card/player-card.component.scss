@@ -1,0 +1,38 @@
+@import 'src/styles/_mixins';
+
+img {
+  width: 20px;
+  height: 20px;
+}
+
+.player {
+  @include flex(row, flex-start, center);
+  font-size: 1.4rem;
+
+  &__avatar {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 8px;
+  }
+
+  &__personal p {
+    font-weight: 400;
+  }
+
+  
+  &__price, 
+  &__personal {
+    margin-left: 1rem;
+    
+    font-weight: 300;
+    font-size: 1.5rem;
+  }
+
+  &__rewards {
+    @include flex(row, center, center);
+
+    & > * {
+      margin-right: 1rem;
+    }
+  }
+}

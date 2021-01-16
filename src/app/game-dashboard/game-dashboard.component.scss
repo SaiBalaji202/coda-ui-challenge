@@ -1,0 +1,9 @@
+:host {
+  display: grid;
+  grid-template-columns: 20vw 1fr;
+  // grid-template-rows: 100vh;
+  grid-auto-rows: 1fr;
+  grid-gap: 3rem;
+}
+
+

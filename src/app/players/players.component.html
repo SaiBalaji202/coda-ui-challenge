@@ -1,0 +1,66 @@
+<div class="players" *ngIf="playersStore.players$ | async as players">
+  <h1>Select Playing 9</h1>
+
+  <table *ngIf="playersStore.selectedPlayers$ | async as selectedPlayers" >
+    <thead class="header">
+      <tr>
+        <th>Select</th>
+        <th>Player Name</th>
+        <th>Avatar</th>
+        <th>
+          <img
+            class="header__icon"
+            src="assets/icons/casino.png"
+            alt="Casino"
+          />
+          Bet
+        </th>
+        <th>
+          <img
+            class="header__icon"
+            src="assets/icons/trophy.png"
+            alt="Trophy"
+          />
+          Wins
+        </th>
+        <th>Lost</th>
+        <th>
+          <img class="header__icon" src="assets/icons/coin.png" alt="Coin" />
+          Price
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let player of players">
+        <td [ngClass]="{ disable: selectedPlayers?.length >= 9 && !player.selected }">
+          <coda-check-box
+            [check]="!!player.selected"
+            (toggleCheck)="onUserToggle(player, $event)"
+          ></coda-check-box>
+        </td>
+        <td>
+          {{ player.Name }}
+        </td>
+        <td>
+          <img
+            [src]="player['Profile Image'] | safeUrl"
+            alt="Avatar"
+            class="player-avatar"
+          />
+        </td>
+        <td>
+          {{ player.Bet }}
+        </td>
+        <td>
+          {{ player.wins ? player.wins : 0 }}
+        </td>
+        <td>
+          {{ player.losses ? player.losses : 0 }}
+        </td>
+        <td>
+          {{ player.Price }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

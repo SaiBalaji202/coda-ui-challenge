@@ -1,0 +1,48 @@
+@import 'src/styles/_colors';
+
+:host {
+  display: block;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+label {
+  font-size: 1.6rem;
+  cursor: pointer;
+  position: relative;
+}
+
+.check-button {
+  height: 2rem;
+  width: 2rem;
+  border: 2px solid $primary;
+  display: inline-block;
+
+  position: absolute;
+  left: 0;
+  top: 0rem;
+
+  &::after {
+    content: "";
+    display: block;
+    height: 1rem;
+    width: 1rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $primary;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+}
+
+input:checked ~ label {
+  .check-button::after {
+    opacity: 1;
+  }
+}
+
+

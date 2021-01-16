@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  playersUrl:
+    'https://s3-ap-southeast-1.amazonaws.com/he-public-data/bets7747a43.json',
 };
 
 /*

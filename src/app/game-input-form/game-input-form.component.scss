@@ -1,0 +1,32 @@
+@import 'src/styles/colors';
+@import 'src/styles/_mixins';
+
+:host {
+  padding: 3rem;
+  background-color: $base-dark;
+  height: 100vh;
+  max-height: 100vh;
+}
+
+.game-input-form-container {
+   @include flex(column, flex-start, center);
+   height: 100%;
+}
+
+.dice {
+  &__icon {
+    display: block;
+    width: 20rem;
+    height: 20rem;
+    margin: auto;
+  }
+}
+
+hr {
+  margin: 1rem 0;
+}
+
+.players {
+  flex: 1;
+  overflow: auto;
+}

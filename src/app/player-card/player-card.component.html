@@ -1,0 +1,32 @@
+<div class="player  mg-sm">
+  <img class="player__avatar" [src]="player['Profile Image']" alt="Avatar" />
+  <div class="player__personal">
+    <p>{{ player.Name }}</p>
+    <div class="player__rewards">
+      <div class="player__wins">
+        <span class="player__wins__icon">
+          <img src="assets/icons/trophy.png" alt="Trophy" />
+        </span>
+        <span class="player__wins__value">
+          {{ player.wins ? player.wins : 0 }}
+        </span>
+      </div>
+      <div class="player__bets">
+        <span class="player__bets__icon">
+          <img src="assets/icons/casino.png" alt="Casino" />
+        </span>
+        <span class="player__bets__value">
+          {{ player.Bet }}
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="player__price">
+    <span class="player__price__icon">
+      <img src="assets/icons/coin.png" alt="Coin" />
+    </span>
+    <span class="player__price__value">
+      {{ player.Price }}
+    </span>
+  </div>
+</div>
