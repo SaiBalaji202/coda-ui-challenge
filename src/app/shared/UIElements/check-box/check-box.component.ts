@@ -15,7 +15,6 @@ export class CheckBoxComponent implements OnInit {
 
   onCheck(): void {
     this.check = !this.check;
-    console.log(this.check);
     this.toggleCheck.emit(this.check);
   }
 }

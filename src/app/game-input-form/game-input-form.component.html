@@ -6,7 +6,7 @@
   <hr />
 
   <ng-container *ngIf="playersStore.selectedPlayers$ | async as players">
-     <div class="players" >
+    <div class="players">
       <h3 class="mg-sm">Playing: {{ players.length }}</h3>
       <ul class="players__list">
         <coda-player-card
@@ -15,7 +15,12 @@
         ></coda-player-card>
       </ul>
     </div>
-    <button class="btn-primary" [disabled]="players.length < 9 || players.length > 9">Select Users</button>
+    <button
+      (click)="showResult()"
+      class="btn-primary"
+      [disabled]="players.length !== 9"
+    >
+      Select Users
+    </button>
   </ng-container>
- 
 </div>

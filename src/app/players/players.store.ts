@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Player } from './players.model';
 import { environment } from './../../environments/environment';
-import { catchError, map, shareReplay, tap } from 'rxjs/operators';
+import { catchError, map, shareReplay, tap, filter } from 'rxjs/operators';
 import { SpinnerService } from '../shared/UIElements/spinner/spinner.service';
 import { ErrorService } from './../shared/services/error.service';
 import { Observable, BehaviorSubject } from 'rxjs';
@@ -14,8 +14,10 @@ export class PlayersStore {
   private playersSubject = new BehaviorSubject<Player[]>([]);
   players$ = this.playersSubject.asObservable();
   selectedPlayers$ = this.players$.pipe(
+    filter(() => !this.load),
     map((players) => players.filter((player) => !!player.selected))
   );
+  load = false;
 
   constructor(
     private http: HttpClient,
@@ -31,14 +33,16 @@ export class PlayersStore {
   }
 
   private fetchAllUsers(): Observable<Player[]> {
+    this.load = true;
     const players$ = this.http.get<Player[]>(environment.playersUrl).pipe(
-      catchError((err) =>
-        this.errService.handleError(
+      catchError((err) => {
+        this.load = false;
+        return this.errService.handleError(
           err,
           'Unable to load Players',
           'Try Refreshing the Page'
-        )
-      ),
+        );
+      }),
       map((players) => {
         const selectedPlayers = JSON.parse(
           localStorage.getItem('selectedPlayers')
@@ -50,6 +54,7 @@ export class PlayersStore {
         return players;
       }),
       tap((players) => {
+        this.load = false;
         this.playersSubject.next(players);
       }),
       shareReplay()
