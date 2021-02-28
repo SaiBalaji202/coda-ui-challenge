@@ -9,6 +9,7 @@ import { PlayersStore } from './players.store';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PlayersComponent implements OnInit {
+
   constructor(public playersStore: PlayersStore) {}
 
   ngOnInit(): void {}

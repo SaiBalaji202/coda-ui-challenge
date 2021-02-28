@@ -1,7 +1,9 @@
 <div class="players" *ngIf="playersStore.players$ | async as players">
   <h1>Select Playing 9</h1>
 
-  <table *ngIf="playersStore.selectedPlayers$ | async as selectedPlayers" >
+  <input type="text" (input)="playersStore.FilterUser = $event.target.value" />
+
+  <table *ngIf="playersStore.selectedPlayers$ | async as selectedPlayers">
     <thead class="header">
       <tr>
         <th>Select</th>
@@ -32,7 +34,11 @@
     </thead>
     <tbody>
       <tr *ngFor="let player of players">
-        <td [ngClass]="{ disable: selectedPlayers?.length >= 9 && !player.selected }">
+        <td
+          [ngClass]="{
+            disable: selectedPlayers?.length >= 9 && !player.selected
+          }"
+        >
           <coda-check-box
             [check]="!!player.selected"
             (toggleCheck)="onUserToggle(player, $event)"

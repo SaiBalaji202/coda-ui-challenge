@@ -12,11 +12,12 @@ import { Observable, BehaviorSubject } from 'rxjs';
 })
 export class PlayersStore {
   private playersSubject = new BehaviorSubject<Player[]>([]);
-  players$ = this.playersSubject.asObservable();
-  selectedPlayers$ = this.players$.pipe(
+  players$: Observable<Player[]> = this.playersSubject.asObservable();
+  selectedPlayers$ = this.players$?.pipe(
     filter(() => !this.load),
     map((players) => players.filter((player) => !!player.selected))
   );
+  filterText: string;
   load = false;
 
   constructor(
@@ -30,6 +31,11 @@ export class PlayersStore {
   public get SelectedUsers(): Player[] {
     const players = this.playersSubject.getValue();
     return players.filter((player) => !!player.selected);
+  }
+
+  public set FilterUser(v: string) {
+    this.filterText = v;
+    this.filterPlayers(this.filterText);
   }
 
   private fetchAllUsers(): Observable<Player[]> {
@@ -75,6 +81,21 @@ export class PlayersStore {
       this.playersSubject.next(players);
       this.updateLocalStorage();
     }
+  }
+
+  private filterPlayers(filterText: string = null): void {
+    filterText = filterText?.trim().toLowerCase();
+
+    this.players$ = this.playersSubject.asObservable().pipe(
+      map((players) => {
+        if (!filterText?.trim()) {
+          return players;
+        }
+        return players?.filter((player) =>
+          player?.Name.trim().toLowerCase().startsWith(filterText)
+        );
+      })
+    );
   }
 
   private updateLocalStorage(): void {
