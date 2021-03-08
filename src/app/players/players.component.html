@@ -1,7 +1,11 @@
 <div class="players" *ngIf="playersStore.players$ | async as players">
   <h1>Select Playing 9</h1>
 
-  <coda-input class="mg-sm" [icon]="faSearch"></coda-input>
+  <coda-input
+    class="mg-sm"
+    [icon]="faSearch"
+    (filter)="playersStore.FilterUser = $event"
+  ></coda-input>
 
   <table *ngIf="playersStore.selectedPlayers$ | async as selectedPlayers">
     <thead class="header">
