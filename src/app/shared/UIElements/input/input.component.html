@@ -1,0 +1,19 @@
+<ng-template #defaultInput>
+  <input [type]="type" (input)="onInput($event.target.value)" />
+</ng-template>
+
+<ng-template #contentInput>
+  <ng-container *ngIf="wrapper.children.length === 0">
+    <ng-container *ngTemplateOutlet="defaultInput"> </ng-container>
+  </ng-container>
+
+  <div #wrapper>
+    <ng-content></ng-content>
+  </div>
+</ng-template>
+
+<fa-icon class="icon" [icon]="icon"></fa-icon>
+
+<ng-container *ngIf="inputTemplate; else contentInput">
+  <ng-container *ngTemplateOutlet="inputTemplate"> </ng-container>
+</ng-container>

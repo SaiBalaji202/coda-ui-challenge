@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { MessagesService } from './messages.service';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -7,7 +7,7 @@ import { tap } from 'rxjs/operators';
 @Component({
   selector: 'coda-messages',
   templateUrl: './messages.component.html',
-  styleUrls: ['./messages.component.scss']
+  styleUrls: ['./messages.component.scss'],
 })
 export class MessagesComponent implements OnInit {
   showMessages = false;
@@ -18,14 +18,11 @@ export class MessagesComponent implements OnInit {
 
   ngOnInit(): void {
     this.messages$ = this.messagesService.messages$.pipe(
-      tap(
-        () => (this.showMessages = true)
-      )
+      tap(() => (this.showMessages = true))
     );
   }
 
   onClose(): void {
     this.showMessages = false;
   }
-
 }

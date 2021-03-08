@@ -1,0 +1,23 @@
+:host {
+  border: 1px solid;
+  padding: 1px 0;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.icon {
+  width: 2rem;
+  height: 2rem;
+  text-align: center;
+  padding: 0 5px;
+  border: none;
+  vertical-align: middle;
+}
+
+:host ::ng-deep input {
+  border: none;
+  outline: none;
+  height: 100%;
+  margin: 1px 5px 1px 0;
+  box-sizing: border-box;
+}
