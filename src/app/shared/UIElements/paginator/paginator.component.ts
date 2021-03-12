@@ -5,6 +5,8 @@ import {
   Output,
   EventEmitter,
   ChangeDetectionStrategy,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 
 @Component({
@@ -13,7 +15,7 @@ import {
   styleUrls: ['./paginator.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PaginatorComponent implements OnInit {
+export class PaginatorComponent implements OnInit, OnChanges {
   @Input() itemsCount = 0;
   @Input() pageSize = 0;
   @Input() currentPage = 1;
@@ -22,7 +24,15 @@ export class PaginatorComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {    
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.itemsCount) {
+      this.initPages();
+    }
+  }
+
+  ngOnInit(): void {}
+
+  initPages(): void {
     const totalPages = Math.ceil(this.itemsCount / this.pageSize);
 
     this.pages = Array(totalPages)
