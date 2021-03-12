@@ -1,13 +1,6 @@
 <div class="players">
   <h1>Select Playing 9</h1>
 
-  <coda-paginator
-    [pageSize]="PAGE_SIZE"
-    [itemsCount]="totalPlayers"
-    [currentPage]="currentPage"
-    (pageChange)="onPageChange($event)"
-  ></coda-paginator>
-
   <coda-input
     class="mg-sm"
     [icon]="faSearch"
@@ -86,6 +79,13 @@
           </tr>
         </tbody>
       </table>
+
+      <coda-paginator
+        [pageSize]="PAGE_SIZE"
+        [itemsCount]="totalPlayers"
+        [currentPage]="currentPage"
+        (pageChange)="onPageChange($event)"
+      ></coda-paginator>
     </ng-container>
   </ng-container>
 </div>
