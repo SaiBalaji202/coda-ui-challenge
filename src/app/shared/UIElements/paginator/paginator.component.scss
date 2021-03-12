@@ -1,0 +1,35 @@
+@import 'src/styles/colors';
+
+$border: darken($base-dark, 30%);
+
+:host {
+    display: block;
+}
+
+.paginator {
+    display: inline-block;
+    font-size: 1.5rem;
+    border: 1px solid $border;
+    border-radius: 4px;
+}
+
+.page-item {
+    display: inline-block;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all .25s;
+
+    &--active {
+        background-color: $primary;
+        color: $on-primary;
+    }
+
+    &:not(:last-child) {
+        border-right: 1px solid $border;
+    }
+
+    &:hover {
+        background-color: $primary-light;
+        color: $on-primary;
+    }
+}

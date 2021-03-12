@@ -1,0 +1,12 @@
+<nav *ngIf="pages.length > 1">
+  <ul class="paginator">
+    <li
+      *ngFor="let page of pages"
+      class="page-item"
+      [ngClass]="{ 'page-item--active': page === currentPage }"
+      (click)="onPageClick(page)"
+    >
+      <a>{{ page }}</a>
+    </li>
+  </ul>
+</nav>
