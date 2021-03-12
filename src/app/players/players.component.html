@@ -14,7 +14,7 @@
     (filter)="playersStore.FilterUser = $event"
   ></coda-input>
 
-  <ng-container *ngIf="players$ | async as players">
+  <ng-container *ngIf="players$ | async as players; else noData">
     <ng-container *ngIf="players.length; else noData">
       <table *ngIf="playersStore.selectedPlayers$ | async as selectedPlayers">
         <thead class="header">
