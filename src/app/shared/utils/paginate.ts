@@ -4,7 +4,7 @@ export function paginate<T>(
   pageSize: number
 ): T[] {
   const startingIdx = (pageNumber - 1) * pageSize;
-  if (startingIdx < items.length) {
+  if (startingIdx < items?.length) {
     return items.slice(startingIdx, startingIdx + pageSize);
   }
 }
