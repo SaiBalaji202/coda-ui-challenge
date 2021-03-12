@@ -11,12 +11,16 @@ import { Observable, BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class PlayersStore {
-  private playersSubject = new BehaviorSubject<Player[]>([]);
-  players$: Observable<Player[]> = this.playersSubject.asObservable();
-  selectedPlayers$ = this.players$?.pipe(
+  private allPlayersSubject = new BehaviorSubject<Player[]>([]);
+  private filteredPlayersSubject = new BehaviorSubject<Player[]>([]);
+
+  players$: Observable<Player[]> = this.filteredPlayersSubject.asObservable();
+
+  selectedPlayers$ = this.allPlayersSubject.asObservable().pipe(
     filter(() => !this.load),
     map((players) => players.filter((player) => !!player.selected))
   );
+
   filterText: string;
   load = false;
 
@@ -29,7 +33,7 @@ export class PlayersStore {
   }
 
   public get SelectedUsers(): Player[] {
-    const players = this.playersSubject.getValue();
+    const players = this.allPlayersSubject.getValue();
     return players.filter((player) => !!player.selected);
   }
 
@@ -61,15 +65,17 @@ export class PlayersStore {
       }),
       tap((players) => {
         this.load = false;
-        this.playersSubject.next(players);
+        this.allPlayersSubject.next(players);
+        this.filteredPlayersSubject.next(players);
       }),
       shareReplay()
     );
+
     return this.loading.spinUntilComplete(players$);
   }
 
   updatePlayerState(playerToUpdate: Player): void {
-    const players = this.playersSubject.getValue();
+    const players = this.allPlayersSubject.getValue();
 
     // Update Players
     const idx = players.findIndex(
@@ -78,7 +84,7 @@ export class PlayersStore {
     );
     if (idx !== -1) {
       players[idx] = { ...playerToUpdate };
-      this.playersSubject.next(players);
+      this.allPlayersSubject.next(players);
       this.updateLocalStorage();
     }
   }
@@ -86,20 +92,18 @@ export class PlayersStore {
   private filterPlayers(filterText: string = null): void {
     filterText = filterText?.trim().toLowerCase();
 
-    this.players$ = this.playersSubject.asObservable().pipe(
-      map((players) => {
-        if (!filterText?.trim()) {
-          return players;
-        }
-        return players?.filter((player) =>
-          player?.Name.trim().toLowerCase().startsWith(filterText)
-        );
-      })
-    );
+    let players = this.allPlayersSubject.getValue();
+
+    if (filterText) {
+      players = players?.filter((player) =>
+        player?.Name.trim().toLowerCase().startsWith(filterText)
+      );
+    }
+    this.filteredPlayersSubject.next(players);
   }
 
   private updateLocalStorage(): void {
-    const players = this.playersSubject.getValue();
+    const players = this.allPlayersSubject.getValue();
     const selectedPlayers = players.filter((player) => !!player.selected);
     localStorage.setItem('selectedPlayers', JSON.stringify(selectedPlayers));
   }

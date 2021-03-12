@@ -1,5 +1,12 @@
-<div class="players" *ngIf="playersStore.players$ | async as players">
+<div class="players">
   <h1>Select Playing 9</h1>
+
+  <coda-paginator
+    [pageSize]="PAGE_SIZE"
+    [itemsCount]="totalPlayers"
+    [currentPage]="currentPage"
+    (pageChange)="onPageChange($event)"
+  ></coda-paginator>
 
   <coda-input
     class="mg-sm"
@@ -7,70 +14,82 @@
     (filter)="playersStore.FilterUser = $event"
   ></coda-input>
 
-  <table *ngIf="playersStore.selectedPlayers$ | async as selectedPlayers">
-    <thead class="header">
-      <tr>
-        <th>Select</th>
-        <th>Player Name</th>
-        <th>Avatar</th>
-        <th>
-          <img
-            class="header__icon"
-            src="assets/icons/casino.png"
-            alt="Casino"
-          />
-          Bet
-        </th>
-        <th>
-          <img
-            class="header__icon"
-            src="assets/icons/trophy.png"
-            alt="Trophy"
-          />
-          Wins
-        </th>
-        <th>Lost</th>
-        <th>
-          <img class="header__icon" src="assets/icons/coin.png" alt="Coin" />
-          Price
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let player of players">
-        <td
-          [ngClass]="{
-            disable: selectedPlayers?.length >= 9 && !player.selected
-          }"
-        >
-          <coda-check-box
-            [check]="!!player.selected"
-            (toggleCheck)="onUserToggle(player, $event)"
-          ></coda-check-box>
-        </td>
-        <td>
-          {{ player.Name }}
-        </td>
-        <td>
-          <img
-            [src]="player['Profile Image'] | safeUrl"
-            alt="Avatar"
-            class="player-avatar"
-          />
-        </td>
-        <td>
-          {{ player.Bet }}
-        </td>
-        <td>
-          {{ player.wins ? player.wins : 0 }}
-        </td>
-        <td>
-          {{ player.losses ? player.losses : 0 }}
-        </td>
-        <td>
-          {{ player.Price }}
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <ng-container *ngIf="players$ | async as players">
+    <ng-container *ngIf="players.length; else noData">
+      <table *ngIf="playersStore.selectedPlayers$ | async as selectedPlayers">
+        <thead class="header">
+          <tr>
+            <th>Select</th>
+            <th>Player Name</th>
+            <th>Avatar</th>
+            <th>
+              <img
+                class="header__icon"
+                src="assets/icons/casino.png"
+                alt="Casino"
+              />
+              Bet
+            </th>
+            <th>
+              <img
+                class="header__icon"
+                src="assets/icons/trophy.png"
+                alt="Trophy"
+              />
+              Wins
+            </th>
+            <th>Lost</th>
+            <th>
+              <img
+                class="header__icon"
+                src="assets/icons/coin.png"
+                alt="Coin"
+              />
+              Price
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let player of players">
+            <td
+              [ngClass]="{
+                disable: selectedPlayers?.length >= 9 && !player.selected
+              }"
+            >
+              <coda-check-box
+                [check]="!!player.selected"
+                (toggleCheck)="onUserToggle(player, $event)"
+              ></coda-check-box>
+            </td>
+            <td>
+              {{ player.Name }}
+            </td>
+            <td>
+              <img
+                [src]="player['Profile Image'] | safeUrl"
+                alt="Avatar"
+                class="player-avatar"
+              />
+            </td>
+            <td>
+              {{ player.Bet }}
+            </td>
+            <td>
+              {{ player.wins ? player.wins : 0 }}
+            </td>
+            <td>
+              {{ player.losses ? player.losses : 0 }}
+            </td>
+            <td>
+              {{ player.Price }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-container>
+  </ng-container>
 </div>
+
+<ng-template #noData>
+  <p class="no-data">No Data Available</p>
+</ng-template>
