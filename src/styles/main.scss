@@ -3,7 +3,7 @@
 @import "reset";
 @import "mixins";
 
-@import "./base/typography";
+@import "base";
 
 html {
   font-size: $base-font-size;

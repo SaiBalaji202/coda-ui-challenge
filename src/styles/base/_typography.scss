@@ -49,26 +49,7 @@ hr, .hr {
   background-image: linear-gradient(to right, rgba($on-base, 0), rgba($on-base, .75), rgba($on-base, 0));
 }
 
-// ///////////////////////
-// Button
-// ///////////////////////
-.btn-primary {
-  padding: 1rem 3rem;
-  background: $primary;
-  color: $on-primary;
-  border-radius: 5px;
-  transition: background .25s;
 
-  &:disabled {
-    pointer-events: none;
-    cursor: not-allowed;
-    background: #777;
-  }
-
-  &:hover {
-    background: $primary-dark;
-  }
-}
 
 // ///////////////////////
 // Margins
@@ -87,13 +68,3 @@ hr, .hr {
 }
 
 
-// ///////////////////////
-// No Data
-// ///////////////////////
-.no-data {
-  color: $error;
-  font-weight: 400;
-  font-size: 1.8rem;
-  letter-spacing: 1.2;
-  text-align: center;
-}

@@ -1,0 +1,20 @@
+// ///////////////////////
+// Button
+// ///////////////////////
+.btn-primary {
+  padding: 1rem 3rem;
+  background: $primary;
+  color: $on-primary;
+  border-radius: 5px;
+  transition: background .25s;
+
+  &:disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    background: #777;
+  }
+
+  &:hover {
+    background: $primary-dark;
+  }
+}
