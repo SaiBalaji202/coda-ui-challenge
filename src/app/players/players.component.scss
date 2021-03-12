@@ -49,6 +49,10 @@ td:first-child {
   }
 }
 
+.disable {
+  pointer-events: none;
+}
+
 .player-avatar {
   width: 5rem;
   height: 5rem;
