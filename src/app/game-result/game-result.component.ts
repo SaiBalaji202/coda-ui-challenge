@@ -17,14 +17,8 @@ export class GameResultComponent implements OnInit {
     this.playersStore.selectedPlayers$
       .pipe(take(1))
       .subscribe((selectedPlayers) => {
-        console.log(selectedPlayers.length);
-
-        if (!selectedPlayers || selectedPlayers.length !== 9) {
-          this.router.navigate(['']);
-        } else {
-          const idx = Math.floor(Math.random() * 9) + 1;
-          this.winnerId = selectedPlayers[idx].Bet;
-        }
+        const idx = Math.floor(Math.random() * 9) + 1;
+        this.winnerId = selectedPlayers[idx].Bet;
       });
   }
 }
