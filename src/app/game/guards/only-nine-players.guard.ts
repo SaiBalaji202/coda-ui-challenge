@@ -8,7 +8,7 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { take, map } from 'rxjs/operators';
-import { PlayersStore } from '../players/players.store';
+import { PlayersStore } from '@app/game/store/players.store';
 
 @Injectable({
   providedIn: 'root',

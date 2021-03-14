@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Player } from './players.model';
-import { PlayersStore } from './players.store';
+import { Player } from '../../model/players.model';
+import { PlayersStore } from '../../store/players.store';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Player } from './../players/players.model';
+import { Player } from '../../model/players.model';
 
 @Component({
   selector: 'coda-player-card',

@@ -4,7 +4,7 @@ import {
   Input,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { Player } from '@app/players/players.model';
+import { Player } from '@game/model/players.model';
 
 @Component({
   selector: 'coda-selected-player-card',

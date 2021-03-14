@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PlayersStore } from '../players/players.store';
+import { PlayersStore } from '../../store/players.store';
 
 @Component({
   selector: 'coda-game-input-form',
@@ -14,6 +14,6 @@ export class GameInputFormComponent implements OnInit {
   ngOnInit(): void {}
 
   showResult(): void {
-    this.router.navigate(['result']);
+    this.router.navigate(['game', 'result']);
   }
 }

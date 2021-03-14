@@ -4,42 +4,20 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {
-  FaIconLibrary,
-  FontAwesomeModule,
-} from '@fortawesome/angular-fontawesome';
-import { fas } from '@fortawesome/free-solid-svg-icons';
 
 import { SharedModule } from './shared/shared.module';
-import { GameDashboardComponent } from './game-dashboard/game-dashboard.component';
-import { GameResultComponent } from './game-result/game-result.component';
-import { PlayersComponent } from './players/players.component';
-import { GameInputFormComponent } from './game-input-form/game-input-form.component';
-import { PlayerCardComponent } from './player-card/player-card.component';
-import { SelectedPlayerCardComponent } from './selected-player-card/selected-player-card.component';
+import { GameModule } from './game/game.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    GameDashboardComponent,
-    GameResultComponent,
-    PlayersComponent,
-    GameInputFormComponent,
-    PlayerCardComponent,
-    SelectedPlayerCardComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FontAwesomeModule,
+    GameModule,
     SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-  constructor(faLibrary: FaIconLibrary) {
-    faLibrary.addIconPacks(fas);
-  }
-}
+export class AppModule {}

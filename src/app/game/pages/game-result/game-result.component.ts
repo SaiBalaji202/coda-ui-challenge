@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { take, tap } from 'rxjs/operators';
 import { faSyncAlt } from '@fortawesome/free-solid-svg-icons';
-import { PlayersStore } from '../players/players.store';
-import { Player } from '@app/players/players.model';
-import { Observable } from 'rxjs';
+import { PlayersStore } from '@app/game/store/players.store';
 
 @Component({
   selector: 'coda-game-result',
