@@ -1,5 +1,5 @@
 <ng-container *ngIf="playersStore.selectedPlayers$ | async as selectedPlayers">
-  <h1>Game Result (Winner ID: {{ selectedPlayers[winnerIdx].Bet }})</h1>
+  <h1>Game Result</h1>
   <ul class="players">
     <li *ngFor="let player of selectedPlayers; let i = index">
       <coda-selected-player-card

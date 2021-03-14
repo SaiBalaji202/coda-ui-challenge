@@ -2,7 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Player } from './players.model';
 import { environment } from './../../environments/environment';
-import { catchError, map, shareReplay, tap, filter } from 'rxjs/operators';
+import {
+  catchError,
+  map,
+  shareReplay,
+  tap,
+  filter,
+  finalize,
+} from 'rxjs/operators';
 import { SpinnerService } from '../shared/UIElements/spinner/spinner.service';
 import { ErrorService } from './../shared/services/error.service';
 import { Observable, BehaviorSubject } from 'rxjs';
@@ -23,6 +30,8 @@ export class PlayersStore {
 
   filterText: string;
   load = false;
+
+  PRICE_AMT = 100;
 
   constructor(
     private http: HttpClient,
@@ -88,6 +97,39 @@ export class PlayersStore {
     }
   }
 
+  updateWinner(winnerIdx: number): void {
+    if (winnerIdx < 0 || winnerIdx > 8) {
+      return;
+    }
+
+    let players = this.allPlayersSubject.getValue();
+
+    const selectedPlayers = this.SelectedUsers;
+    const winnerName = selectedPlayers[winnerIdx].Name;
+
+    players = players.map((player) => {
+      if (!player.selected) {
+        return { ...player };
+      } else if (player.selected && player.Name !== winnerName) {
+        return {
+          ...player,
+          Bet: +player.Bet + 1,
+          losses: player.losses ? +player.losses + 1 : 1,
+        };
+      } else {
+        return {
+          ...player,
+          Bet: +player.Bet + 1,
+          wins: player.wins ? +player.wins + 1 : 1,
+          Price: +player.Price + this.PRICE_AMT,
+        };
+      }
+    });
+
+    this.allPlayersSubject.next(players);
+    this.updateLocalStorage();
+  }
+
   private filterPlayers(filterText: string = null): void {
     filterText = filterText?.trim().toLowerCase();
 
@@ -112,6 +154,7 @@ export class PlayersStore {
       const idx = players.findIndex(
         (player) => player.Name === selectedPlayer.Name
       );
+
       if (idx !== -1) {
         players[idx] = { ...selectedPlayer, selected: true };
       }

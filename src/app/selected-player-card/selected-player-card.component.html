@@ -1,11 +1,14 @@
-<div class="player-card card" [ngClass]="{winner: winner}" >
+<div class="player-card card" [ngClass]="{ winner: winner }">
   <div class="player-card__img">
     <img [src]="player['Profile Image'] | safeUrl" alt="Avatar" />
   </div>
   <ul class="player-card__details">
+    <li><strong>Bets: </strong> {{ player.Bet }}</li>
     <li><strong>Name: </strong> {{ player.Name }}</li>
     <li><strong>Total Wins: </strong> {{ player.wins ? player.wins : 0 }}</li>
-    <li><strong>Total Loss: </strong> {{ player.losses ? player.losses : 0 }}</li>
+    <li>
+      <strong>Total Loss: </strong> {{ player.losses ? player.losses : 0 }}
+    </li>
     <li><strong>Price Amount: </strong> {{ player.Price | currency }}</li>
   </ul>
 </div>
