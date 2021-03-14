@@ -8,6 +8,8 @@
 .player-card {
   @include flex(column, center, center);
 
+  background-image: linear-gradient(to bottom right, $error 50%, $on-base 50%);
+  color: $on-error;
   font-size: 1.4rem;
   letter-spacing: 1px;
 
