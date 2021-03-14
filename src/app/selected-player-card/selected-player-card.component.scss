@@ -1,0 +1,33 @@
+@import 'src/styles/_mixins';
+@import 'src/styles/_colors';
+
+:host {
+  display: block;
+}
+
+.player-card {
+  @include flex(column, center, center);
+
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+
+  width: 22rem;
+  height: 22rem;
+  overflow: hidden;
+
+  &__img {
+    margin-bottom: 1rem;
+    img {
+      display: inline-block;
+      height: 10rem;
+      border-radius: 50%;
+    }
+  }
+}
+
+.winner {
+  background-image: linear-gradient(to bottom right, $success 50%, $on-base 50%);
+  // background: $success;
+  color: $on-success;
+  animation: zoom-in-out .5s infinite alternate;
+}

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Player } from './players.model';
 import { PlayersStore } from './players.store';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { paginate } from '@app/shared/utils/paginate';
 
@@ -19,7 +19,7 @@ export class PlayersComponent implements OnInit {
   currentPage = 1;
   PAGE_SIZE = 10;
 
-  paginate =paginate;
+  paginate = paginate;
 
   constructor(public playersStore: PlayersStore) {}
 

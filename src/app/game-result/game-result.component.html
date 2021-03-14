@@ -1,1 +1,17 @@
-<p>Winner Id: {{ winnerId }}</p>
+<ng-container *ngIf="playersStore.selectedPlayers$ | async as selectedPlayers">
+  <h1>Game Result (Winner ID: {{ selectedPlayers[winnerIdx].Bet }})</h1>
+  <ul class="players">
+    <li *ngFor="let player of selectedPlayers; let i = index">
+      <coda-selected-player-card
+        [player]="player"
+        [winner]="i !== winnerIdx ? false : true"
+      ></coda-selected-player-card>
+    </li>
+  </ul>
+
+  <div class="footer">
+    <a class="replay" (click)="replay()">
+      Replay Game <fa-icon class="icon" [icon]="faSyncAlt"></fa-icon>
+    </a>
+  </div>
+</ng-container>

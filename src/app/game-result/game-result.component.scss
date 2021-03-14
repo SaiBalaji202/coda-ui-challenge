@@ -1,3 +1,35 @@
-p {
-  font-size: 3rem;
+@import "src/styles/_mixins";
+@import "src/styles/_colors";
+
+:host {
+  display: block;
+  margin: 2rem;
+  padding: 4rem;
+}
+
+h1 {
+  color: $primary;
+}
+
+.players {
+  @include flex(row, center, center);
+  flex-wrap: wrap;
+  margin: 2rem 0;
+
+  & > * {
+    margin: 2rem;
+  }
+}
+
+.footer {
+  text-align: right;
+}
+
+.replay {
+  font-size: 2rem;
+  transition: color 0.25s;
+
+  &:hover {
+    color: $primary;
+  }
 }
