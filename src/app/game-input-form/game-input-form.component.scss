@@ -1,5 +1,5 @@
-@import 'src/styles/colors';
-@import 'src/styles/_mixins';
+@import "styles/colors";
+@import "styles/_mixins";
 
 :host {
   padding: 3rem;
@@ -9,8 +9,8 @@
 }
 
 .game-input-form-container {
-   @include flex(column, flex-start, center);
-   height: 100%;
+  @include flex(column, flex-start, center);
+  height: 100%;
 }
 
 .dice {

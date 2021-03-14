@@ -1,4 +1,4 @@
-@import 'src/styles/colors';
+@import "styles/colors";
 
 :host {
   display: block;
@@ -18,7 +18,8 @@ table {
   width: 100%;
 }
 
-td, th {
+td,
+th {
   border: 1px solid $base-dark;
   padding: 1rem;
   font-size: 1.2rem;
@@ -33,11 +34,10 @@ th {
   text-align: left;
 }
 
-th:first-child, 
+th:first-child,
 td:first-child {
   width: 50px;
 }
-
 
 .header {
   &__icon {

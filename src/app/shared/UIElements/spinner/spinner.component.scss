@@ -1,7 +1,6 @@
-@import 'src/styles/colors';
+@import "styles/colors";
 
 $backdrop-color: rgba($on-base, 0.75);
-
 
 .backdrop {
   position: fixed;

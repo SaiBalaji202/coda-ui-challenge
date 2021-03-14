@@ -1,4 +1,4 @@
-@import 'src/styles/_colors';
+@import "styles/_colors";
 
 :host {
   display: block;
@@ -44,5 +44,3 @@ input:checked ~ label {
     opacity: 1;
   }
 }
-
-

@@ -2,16 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Player } from './players.model';
 import { environment } from './../../environments/environment';
-import {
-  catchError,
-  map,
-  shareReplay,
-  tap,
-  filter,
-  finalize,
-} from 'rxjs/operators';
-import { SpinnerService } from '../shared/UIElements/spinner/spinner.service';
-import { ErrorService } from './../shared/services/error.service';
+import { catchError, map, shareReplay, tap, filter } from 'rxjs/operators';
+import { SpinnerService } from 'app/shared/UIElements/spinner/spinner.service';
+import { ErrorService } from 'app/shared/services/error.service';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
