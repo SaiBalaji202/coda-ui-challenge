@@ -79,8 +79,7 @@ export class PlayersStore {
 
     // Update Players
     const idx = players.findIndex(
-      (player) =>
-        player.Name === playerToUpdate.Name && player.Bet === playerToUpdate.Bet
+      (player) => player.Name === playerToUpdate.Name
     );
     if (idx !== -1) {
       players[idx] = { ...playerToUpdate };
@@ -111,9 +110,7 @@ export class PlayersStore {
   private updatePlayers(players: Player[], selectedPlayers: Player[]): void {
     selectedPlayers.forEach((selectedPlayer) => {
       const idx = players.findIndex(
-        (player) =>
-          player.Name === selectedPlayer.Name &&
-          player.Bet === selectedPlayer.Bet
+        (player) => player.Name === selectedPlayer.Name
       );
       if (idx !== -1) {
         players[idx] = { ...selectedPlayer, selected: true };
